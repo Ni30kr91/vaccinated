@@ -48,6 +48,13 @@ type Vaccination struct {
 type Vaccine_providers struct {
 	Company string `json:"company"`
 }
+type RemovedNurses struct {
+	Email         string `json:"email" binding:"email"`
+	First_name    string `json:"first_name"`
+	Last_name     string `json:"last_name"`
+	Date_of_birth string `json:"date_of_birth"`
+	Sex           string `json:"sex"`
+}
 
 func main() {
 	createDBConnection()
@@ -66,6 +73,8 @@ func setupRoutes(r *gin.Engine) {
 	r.GET("persons", GetallPersons)
 	r.GET("person/vaccinated", personVaccinated)
 	r.GET("nurses/vaccinated", nursesVaccinated)
+	r.POST("post/nurses", Insertnurse)
+	r.DELETE("delete/nurses", deleteNursesfromdb)
 
 	// Get all nurses
 	// Get all persons
